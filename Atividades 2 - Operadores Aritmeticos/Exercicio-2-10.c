@@ -9,9 +9,28 @@ Calcule e escreva o salário final do vendedor.*/
 #include <stdio.h>
 
 /*=============VARIAVEIS=============*/
+int numeroDeCarros;
+float salarioFixo;
+float comicaoFixa;
+float ValorTotalDosCarro;
+float salarioFinal;
 
 /*=============Execução==============*/
 int main(){
 
-    
+    printf("Quantos carros que você vendeu? \n");
+    scanf("%d", &numeroDeCarros);
+
+    printf("Qual valor total de todas suas vendas? \n");
+    scanf("%f", &ValorTotalDosCarro);
+
+    printf("Qual e o seu salario fixo? \n");
+    scanf("%f", &salarioFixo);
+
+    printf("Qual e sua comição por cada carro vendido? \n");
+    scanf("%f", &comicaoFixa);
+
+    salarioFinal = salarioFixo + (comicaoFixa * numeroDeCarros) + (5 * ValorTotalDosCarro / 100);
+
+    printf("Seu salario final e de R$ %.2f reais \n", salarioFinal);
 }
