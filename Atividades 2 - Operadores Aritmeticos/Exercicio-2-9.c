@@ -2,11 +2,17 @@
 porcentagem do distribuidor e dos impostos (aplicados ao custo de fábrica). Supondo
 que o percentual do distribuidor seja de 28% e os impostos de 45%, escrever um
 algoritmo para ler o custo de fábrica de um carro, calcular e escrever o custo final ao consumidor*/
+//
+//Michel Marques Dos Santos
+//
 #include <stdio.h>
 
+/*=============VARIAVEIS=============*/
+float custoDeFabricacao;
+float custoFinal;
+
+/*=============Execução==============*/
 int main(){
-    float custoDeFabricacao;
-    float custoFinal;
 
     printf("Quanto custou para fabricar o carro?\n");
     scanf("%f", &custoDeFabricacao);

@@ -1,9 +1,15 @@
 /*Escreva um programa que pergunte qual o raio de um círculo e imprima a sua área.*/
+//
+//Michel Marques Dos Santos
+//
 #include <stdio.h>
 
+/*=============VARIAVEIS=============*/
+float raio;
+float area;
+
+/*=============Execução==============*/
 int main(){
-    float raio;
-    float area;
 
     printf("qual o tamaho do raio do circulo?\n");
     scanf("%f", &raio);

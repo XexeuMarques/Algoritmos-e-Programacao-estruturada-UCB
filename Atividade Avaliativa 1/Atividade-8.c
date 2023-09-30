@@ -10,3 +10,15 @@ c) maior salário;
 d) percentual de pessoas com salário até R$100,00.
 
 O final da leitura de dados se dará com a entrada de um salário negativo. (Use o comando do - while) .*/
+//
+//Michel Marques Dos Santos
+//
+#include <stdio.h>
+
+/*=============VARIAVEIS=============*/
+
+/*=============Execução==============*/
+int main(){
+
+    
+}

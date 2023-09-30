@@ -16,3 +16,15 @@ a) qual o maior e o menor índice de acidentes de trânsito e a que cidades pert
 b) qual a média de veículos nas cidades brasileiras
 
 c) qual a média de acidentes com vítimas entre as cidades do Rio Grande do Sul.*/
+//
+//Michel Marques Dos Santos
+//
+#include <stdio.h>
+
+/*=============VARIAVEIS=============*/
+
+/*=============Execução==============*/
+int main(){
+
+    
+}

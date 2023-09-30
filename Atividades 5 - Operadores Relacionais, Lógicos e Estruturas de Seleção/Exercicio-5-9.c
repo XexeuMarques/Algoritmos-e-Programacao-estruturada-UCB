@@ -15,3 +15,15 @@ ou uma mensagem caso o funcionário não tenha direito a nenhum aumento.
 |Ate 2000,00     |10%         |De 7 a 10 Anos  |300,00   |
 |Acima de 2000,00|Sem Reajuste|Mais de 10 Anos |500,00   |
 */
+//
+//Michel Marques Dos Santos
+//
+#include <stdio.h>
+
+/*=============VARIAVEIS=============*/
+
+/*=============Execução==============*/
+int main(){
+
+    
+}

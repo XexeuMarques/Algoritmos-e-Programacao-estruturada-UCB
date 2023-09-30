@@ -1,10 +1,16 @@
 /*Dadas as medidas de uma sala, informe sua área.*/
+//
+//Michel Marques Dos Santos
+//
 #include <stdio.h>
 
+/*=============VARIAVEIS=============*/
+float lado1;
+float lado2;
+float areaQuadrada;
+
+/*=============Execução==============*/
 int main(){
-    float lado1;
-    float lado2;
-    float areaQuadrada;
 
     printf("Digite os metros de um lado da sala\n");
     scanf("%f", &lado1);
@@ -14,6 +20,6 @@ int main(){
     areaQuadrada = lado1 * lado2;
 
     printf("A sala tem %.2f metros quadrados !!", areaQuadrada);
-    
+
     return 0;
 }

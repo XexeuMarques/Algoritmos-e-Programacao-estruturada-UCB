@@ -1,1 +1,0 @@
-/*Leia a idade e imprima se a pessoa é maior*/

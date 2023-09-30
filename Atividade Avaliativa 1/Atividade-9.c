@@ -16,3 +16,15 @@ Elabore um algoritmo que leia o código do candidato em um voto. Calcule e escre
 - total de votos em branco;
 
 Como finalizador do conjunto de votos, tem-se o valor 0.*/
+//
+//Michel Marques Dos Santos
+//
+#include <stdio.h>
+
+/*=============VARIAVEIS=============*/
+
+/*=============Execução==============*/
+int main(){
+
+    
+}

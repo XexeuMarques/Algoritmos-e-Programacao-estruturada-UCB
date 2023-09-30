@@ -1,13 +1,19 @@
 /*Faça um algoritmo que leia a idade de uma pessoa expressa em anos, 
 meses e dias e escreva a idade dessa pessoa expressa apenas em dias. 
 Considerar ano com 365 dias e mês com 30 dias.*/
+//
+//Michel Marques Dos Santos
+//
 #include <stdio.h>
 
+/*=============VARIAVEIS=============*/
+int anoNacimento;
+int diaNacimento;
+int mesNacimento;
+int diasVividos;
+
+/*=============Execução==============*/
 int main(){
-    int anoNacimento;
-    int diaNacimento;
-    int mesNacimento;
-    int diasVividos;
 
     printf("voce naceu em que ano?\n");
     scanf("%d", &anoNacimento);

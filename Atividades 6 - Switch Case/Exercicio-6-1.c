@@ -10,3 +10,15 @@ considerando só os seguintes valores:
 31 - Belo Horizonte 
 Qualquer outro - uma cidade no Brasil sem identificação 
 */
+//
+//Michel Marques Dos Santos
+//
+#include <stdio.h>
+
+/*=============VARIAVEIS=============*/
+
+/*=============Execução==============*/
+int main(){
+
+    
+}

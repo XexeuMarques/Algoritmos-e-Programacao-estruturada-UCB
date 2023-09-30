@@ -6,3 +6,15 @@ Se o ponto estiver sobre um dos eixos escreva “Eixo X” ou “Eixo Y”, conf
     --------
     Q3 | Q4
 */
+//
+//Michel Marques Dos Santos
+//
+#include <stdio.h>
+
+/*=============VARIAVEIS=============*/
+
+/*=============Execução==============*/
+int main(){
+
+    
+}

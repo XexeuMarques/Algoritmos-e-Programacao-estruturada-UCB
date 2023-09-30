@@ -2,3 +2,15 @@
 A primeira e  a segunda prova tem peso 1 e a terceira tem peso 2. 
 Ao final, mostrar a média do aluno e indicar se o aluno foi aprovado ou reprovado. 
 A nota para aprovação deve ser igual ou  superior a 7.0 pontos. */
+//
+//Michel Marques Dos Santos
+//
+#include <stdio.h>
+
+/*=============VARIAVEIS=============*/
+
+/*=============Execução==============*/
+int main(){
+
+    
+}

@@ -6,17 +6,13 @@ cada espectador respondeu a um questionário, no qual constava:
 
 - sua opinião em relação ao filme, segundo as seguintes notas:
 
-Nota        Significado
-
-A              Ótimo
-
-B              Bom
-
-C             Regular
-
-D             Ruim
-
-E              Péssimo
+|Nota |Significado |
+|------------------|
+|A    |Ótimo       |
+|B    |Bom         |
+|C    |Regular     |
+|D    |Ruim        |
+|E    |Péssimo     |
 
 Elabore um algoritmo que, lendo estes dados, calcule e imprima:
 
@@ -25,3 +21,15 @@ a diferença percentual entre respostas bom e regular;
 a média de idade das pessoas que responderam ruim;
 a percentagem de respostas péssimo e a maior idade que utilizou esta opção;
 a diferença de idade entre a maior idade que respondeu ótimo e a maior idade que respondeu ruim. */
+//
+//Michel Marques Dos Santos
+//
+#include <stdio.h>
+
+/*=============VARIAVEIS=============*/
+
+/*=============Execução==============*/
+int main(){
+
+    
+}

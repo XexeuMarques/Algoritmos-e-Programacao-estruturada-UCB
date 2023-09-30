@@ -6,7 +6,7 @@ sexo (masculino e feminino) da pessoa entrevistada e o voto (não pode ser difer
 O número de pessoas entrevistadas não poderá ser inferior a 50 e não poderá ultrapassar 300, 
 o algoritmo poderá ser finalizado a qualquer momento desde que se obedeça ao critério anterior. 
 
-  |JOGADORAS                    |
+| |JOGADORAS                    |
 |1|Sam Kerr - Australia         |
 |2|Alex Morgan - Estados Unidos |
 |3|Dzsenifer Marozsan - Alemanha|
@@ -25,3 +25,15 @@ separando por sexo, maior de idade e menor de idade.
 ✓ Exibir o nome das pessoas maior de idade que votaram na Marta Vieira.
 
 ✓ Exibir a quantidade de mulheres que participaram da pesquisa.*/
+//
+//Michel Marques Dos Santos
+//
+#include <stdio.h>
+
+/*=============VARIAVEIS=============*/
+
+/*=============Execução==============*/
+int main(){
+
+    
+}

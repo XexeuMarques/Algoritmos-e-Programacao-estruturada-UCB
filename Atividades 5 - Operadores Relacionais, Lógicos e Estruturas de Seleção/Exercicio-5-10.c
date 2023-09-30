@@ -9,3 +9,15 @@ A varável a tem que ser diferente de zero. Caso seja igual, imprima a mensagem 
 
 • Se ∆ > 0, imprima as duas raízes reais
 */
+//
+//Michel Marques Dos Santos
+//
+#include <stdio.h>
+
+/*=============VARIAVEIS=============*/
+
+/*=============Execução==============*/
+int main(){
+
+    
+}

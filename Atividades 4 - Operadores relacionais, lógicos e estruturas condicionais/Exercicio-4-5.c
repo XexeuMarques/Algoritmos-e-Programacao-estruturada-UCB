@@ -1,10 +1,16 @@
 /*Construir um algoritmo que leia um número e imprima se ele é igual a 5, a 200, a 400, 
 se está no intervalo entre 500 e 1000, ou se ela está fora dos escopos anteriores. */
+//
+//Michel Marques Dos Santos
+//
 #include <stdio.h>
 
+/*=============VARIAVEIS=============*/
 int numero;
 
+/*=============Execução==============*/
 int main(){
+    
     printf("Escreva um numero: \n");
     scanf("%d", &numero);
 

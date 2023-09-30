@@ -1,1 +1,0 @@
-/*Leia o peso e imprima se é menor que 60kg*/

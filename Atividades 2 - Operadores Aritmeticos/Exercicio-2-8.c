@@ -1,11 +1,17 @@
 /*Escreva um algoritmo para ler o salário mensal atual de um funcionário e o percentual de reajuste. 
 Calcular e escrever o valor do novo salário.*/
+//
+//Michel Marques Dos Santos
+//
 #include <stdio.h>
 
+/*=============VARIAVEIS=============*/
+float salario;
+int percentualDeAjuste;
+float salarioReajustado;
+
+/*=============Execução==============*/
 int main(){
-    float salario;
-    int percentualDeAjuste;
-    float salarioReajustado;
 
     printf("qual o seu salario mensal?\n");
     scanf("%f", &salario);

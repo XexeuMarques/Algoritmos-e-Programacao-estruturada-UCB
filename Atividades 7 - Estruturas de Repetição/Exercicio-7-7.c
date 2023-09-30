@@ -19,3 +19,15 @@ Para indicar fim dos habitantes pesquisados, o usuário fornecerá um habitante 
 
 Ao final, o algoritmo deve determinar a porcentagem de indivíduos do sexo feminino, 
 com idade entre 18 e 35 anos e que tenham olhos castanhos e cabelos castanhos */
+//
+//Michel Marques Dos Santos
+//
+#include <stdio.h>
+
+/*=============VARIAVEIS=============*/
+
+/*=============Execução==============*/
+int main(){
+
+    
+}
