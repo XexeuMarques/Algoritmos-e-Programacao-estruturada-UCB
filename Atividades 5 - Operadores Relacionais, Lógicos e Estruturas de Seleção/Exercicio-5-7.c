@@ -8,9 +8,27 @@ A nota para aprovação deve ser igual ou  superior a 7.0 pontos. */
 #include <stdio.h>
 
 /*=============VARIAVEIS=============*/
+float nota1, nota2, nota3, media;
 
 /*=============Execução==============*/
 int main(){
 
-    
+    printf("Digite a nota da primeira prova: \n");
+    scanf("%f", &nota1);
+
+    printf("Digite a nota da segunda prova: \n");
+    scanf("%f", &nota2);
+
+    printf("Digite a nota da terceira prova: \n");
+    scanf("%f", &nota3);
+
+    media = (nota1 + nota2 + 2 * nota3) / 3;
+    printf("A sua media foi de %.2f \n", media);
+
+    if (media >= 7) {
+        printf("Voce foi aprovado, parabems !!! \n");
+    }
+    else {
+        printf("Voce foi reprovado :( \n");
+    }
 }

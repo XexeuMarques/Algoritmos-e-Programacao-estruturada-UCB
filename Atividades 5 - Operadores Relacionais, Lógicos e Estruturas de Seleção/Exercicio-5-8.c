@@ -8,9 +8,21 @@ As condições para aposentadoria são:
 #include <stdio.h>
 
 /*=============VARIAVEIS=============*/
+int idade, tempoTrabalhado;
 
 /*=============Execução==============*/
 int main(){
 
-    
+    printf("Quantos anos voce tem? \n");
+    scanf("%d", &idade);
+
+    printf("Quantos anos trabalhados voce tem? \n");
+    scanf("%d", &tempoTrabalhado);
+
+    if (idade >= 65 || tempoTrabalhado >= 30 || idade >= 60 && tempoTrabalhado >= 25) {
+        printf("Voce tem condições para se aposentar. \n");
+    }
+    else {
+        printf("Voce não tem as condições para se aposentar \n");
+    }
 }

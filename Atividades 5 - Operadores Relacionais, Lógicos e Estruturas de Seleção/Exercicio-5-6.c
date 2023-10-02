@@ -7,9 +7,15 @@ Se o número não for par, o programa não deve fazer nada.*/
 #include <stdio.h>
 
 /*=============VARIAVEIS=============*/
+int numero;
 
 /*=============Execução==============*/
 int main(){
 
-    
+    printf("escreva um numero \n");
+    scanf("%d", &numero);
+
+    if (numero % 2 == 0) {
+        printf("Esse numero e par !!! \n");
+    }    
 }
