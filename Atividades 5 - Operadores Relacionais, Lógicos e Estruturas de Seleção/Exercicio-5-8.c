@@ -19,7 +19,7 @@ int main(){
     printf("Quantos anos trabalhados voce tem? \n");
     scanf("%d", &tempoTrabalhado);
 
-    if (idade >= 65 || tempoTrabalhado >= 30 || idade >= 60 && tempoTrabalhado >= 25) {
+    if (idade >= 65 || tempoTrabalhado >= 30 || (idade >= 60 && tempoTrabalhado >= 25)) {
         printf("Voce tem condições para se aposentar. \n");
     }
     else {
