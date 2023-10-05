@@ -8,4 +8,5 @@ int main(){
     // system("ls -lha ..");
     system("exa -l --icons ..");
     printf("Pasta do codigo \n");
+    printf("Teste 123");
 }

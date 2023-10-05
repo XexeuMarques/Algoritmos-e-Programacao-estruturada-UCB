@@ -23,11 +23,28 @@ com idade entre 18 e 35 anos e que tenham olhos castanhos e cabelos castanhos */
 //Michel Marques Dos Santos
 //
 #include <stdio.h>
+#include <stdlib.h>
+#include <threads.h>
 
 /*=============VARIAVEIS=============*/
+char sexo, corDosOlhos, corDosCabelos;
+int idade, totalMulher, totalHomem;
+float valorSalario, habitantesEspesifico;
 
 /*=============Execução==============*/
 int main(){
 
-    
+    do {
+        printf("seu o seu sexo? \n m = mascolino e f = feminino: \n");
+        scanf("%c", &sexo);
+
+        //validador
+        if (sexo != 'f' && sexo != 'm') {
+            system("clear");
+            printf("opção invalida \n");
+            printf("aperte enter para continuar");
+            getchar();
+        }
+
+    }while (idade != -1);
 }
