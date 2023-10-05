@@ -2,7 +2,7 @@ DIA=$(date +%d/%m/%Y)
 
 git status
 echo " -----------------------------------------------
-Esse e o status atual do obsidian no git "
+Esse e o status atual no git "
 read -p "Pressione enter para continuar ... "
 clear
 git add .
