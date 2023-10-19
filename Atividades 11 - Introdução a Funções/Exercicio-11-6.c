@@ -6,11 +6,38 @@ IMC = peso / (altura * altura)
 //Michel Marques Dos Santos
 //
 #include <stdio.h>
+/*========= Prototipos das Funções ========*/
+float imcNumero(float quilos, float altura);
 
-/*=============VARIAVEIS=============*/
+/*============== EXECUÇÃO ================*/
 
-/*=============Execução==============*/
-int main(){
+    int main(){
+//======= VARIAVEIS 
+    float peso;
+    float altura;
+    float imc;
 
-    
-}
+//======= ESCOPO
+    printf("Qual o seu peso em quilos? ");
+    scanf("%f", &peso);
+    printf("Qual a sua altura em metros? ");
+    scanf("%f", &altura);
+
+    imc = imcNumero(peso, altura);
+
+    printf("Seu IMC e de: %f \n", imc);
+
+    return 0;
+
+    }
+
+/*=============== FUNÇõES =============== */
+
+//---> Função retorna o IMC
+    float imcNumero(float quilos, float altura){
+        float imc;
+
+        imc = quilos / (altura * altura);
+
+        return imc;
+    }
