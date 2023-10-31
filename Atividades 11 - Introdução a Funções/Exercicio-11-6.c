@@ -8,6 +8,7 @@ IMC = peso / (altura * altura)
 #include <stdio.h>
 /*========= Prototipos das Funções ========*/
 float imcNumero(float quilos, float altura);
+void situasao(float imc);
 
 /*============== EXECUÇÃO ================*/
 
@@ -27,6 +28,8 @@ float imcNumero(float quilos, float altura);
 
     printf("Seu IMC e de: %f \n", imc);
 
+    situasao(imc);
+
     return 0;
 
     }
@@ -40,4 +43,19 @@ float imcNumero(float quilos, float altura);
         imc = quilos / (altura * altura);
 
         return imc;
+    }
+
+//---> Verifica sua situasao
+    void situasao(float imc){
+
+        if (imc > 18.5 && imc < 24.9)
+        {
+            printf("Voce esta na faixa de pesso normal!!");
+        }else if (imc < 18.5)
+        {
+            printf("Voce esta abaixo do peso!!!");
+        }else{
+            printf("Voce esta acima do peso!!");
+        }
+        
     }
