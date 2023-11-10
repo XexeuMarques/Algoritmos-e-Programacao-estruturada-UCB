@@ -127,9 +127,9 @@ void deletar(Pessoa p[], int totalCadastros, int idBusca){ // função para faze
                 // percorre as possiçõs subsequentes (depois das que eu encontrei; e realocar a lista 
                 for (int j = 0; j < totalCadastros - 1; j++)
                 {
-                    p[j] = p[j-1];
+                    p[j] = p[j+1];
                 }
-                
+                printf("excl");
             }
         }
     }
