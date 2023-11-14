@@ -17,3 +17,19 @@
 - estruturade de datos lita
     - ponteros
 
+- funções novas
+    - para validar
+        - strchr = um caracter no meio
+        - strcmp = uma sequencia de palavras
+        
+
+    exemplo:
+    ```c
+    res = strchr(nome, "a");
+    res = null // Não existe o caracter a
+    ```
+    ```c
+    if(strchr(usuario[indice].email, "@") == null){
+        printf("não existe");
+    }
+    ```
