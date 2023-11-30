@@ -12,9 +12,32 @@ Se o ponto estiver sobre um dos eixos escreva “Eixo X” ou “Eixo Y”, conf
 #include <stdio.h>
 
 /*=============VARIAVEIS=============*/
+float x, y;
 
 /*=============Execução==============*/
 int main(){
 
-    
+    printf("Informe as coordenadas: ");
+    printf("\nPonto X: ");
+    scanf("%f", &x);
+    printf("Ponto Y: ");
+    scanf("%f", &y);
+
+    if(x>0.0 && y>0.0){
+        printf("Q1");
+    }else if(x<0.0 && y>0.0){
+        printf("Q2");
+    }else if(x<0.0 && y<0.0){
+        printf("Q3");
+    }else if(x>0.0 && y<0.0){
+        printf("Q4");
+    }else if(y== 0.0 && x!=0){
+        printf("Eixo X");
+    }else if(x==0.0 && y!=0){
+        printf("Eixo Y");
+    }else{
+        printf("Origem");
+    }
+
+    return 0;
 }
