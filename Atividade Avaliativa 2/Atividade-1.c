@@ -75,7 +75,7 @@ O resultado final será mostrado ao usuário por meio de um procedimento (***mos
 
     void mostraFinal(int numeroPecas) {
         if (validaQuantidade(numeroPecas) == 1) {
-            printf("Quantidade inválida\n");
+            printf("Quantidade não e inválida\n");
         } else {
             printf("O seu salário final é de: %.2f\n", calculaSalario(numeroPecas));
         }

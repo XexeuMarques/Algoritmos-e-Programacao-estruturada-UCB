@@ -18,7 +18,10 @@ Na solução deste problema os resultados finais de cada assalariado que partici
 #include <stdio.h>
 //======= STRUCTS
 typedef struct PessoasAssalariadas{
-    
+    char nome[30];
+    char sexo[12];
+    char classificacao[6];
+    float salario;
 } assalariado;
 
 /*========= Prototipos das Funções ========*/
@@ -29,9 +32,55 @@ typedef struct PessoasAssalariadas{
 
 //======= ESCOPO
 
-
+    return 0;
     }
 
 /*=============== FUNÇõES =============== */
 
-//--->
+//---> Validador e leitor de sexo
+    char validaSexo() {
+        char sexo;
+        do {
+            printf("Digite o sexo: \n[F] -> para feminino \n[M] -> para masculino \n[O] -> para outro:");
+            scanf(" %c", &sexo);
+
+            if (sexo != 'M' || sexo != 'F' || sexo != 'O') {
+            printf("Sexo digitado é inválido!! \nDigite novamente\n");
+            }
+        } while (sexo != 'M' || sexo != 'F');
+
+        return sexo;
+    }
+
+//---> Classificador de salario
+    void classificaSalario(float salario, char *classificacao) {
+        if (salario > 1400) {
+            sprintf(classificacao, "Acima");
+        } else if (salario < 1400) {
+            sprintf(classificacao, "Abaixo");
+        } else {
+            sprintf(classificacao, "Igual");
+        }
+    }
+
+//---> Validador e leitor de salario
+    float validaSalario() {
+        float salario;
+        do {
+            printf("Digite o salário: R$ ");
+            scanf(" %f", &salario);
+
+            if (salario < 1) {
+            printf("Valor de salário inválido\n");
+            }
+        } while (salario < 1);
+
+    return salario;
+    }
+
+//---> Mostra as informações
+    void mostraClassificacao(char sexo, float salario, char *classificacao) {
+        printf("Sexo: %s\n", (sexo == 'M' || sexo == 'm') ? "Masculino" : (sexo == 'F' || sexo == 'f') ? "Feminino" : "Outro"); // Operador ternário aninhado
+        printf("Salário: R$%.2f\n", salario);
+        printf("Classificação em relação ao salário mínimo: %s do salário mínimo\n", classificacao);
+    }
