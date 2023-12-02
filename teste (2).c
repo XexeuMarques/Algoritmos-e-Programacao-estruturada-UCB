@@ -1,198 +1,87 @@
-// CRUD basico utilizando estrutura de dados de lista
-// o variavel ponteiro lista -> armazena o endereço de memoria do primeira pessoa da lista, para dar inicio a lista
+/*
+Para o controle dos veículos que circulam em uma determinada cidade, a Secretaria dos Transportes criou o seguinte registro padrão:
+
+    Proprietário:_______ Combustível:____
+    Modelo: ____________ Cor: ___________
+    Nº chassi: _________ Ano: ___________ Placa: _______
+
+Em que:
+Combustível pode ser álcool, diesel ou gasolina;
+Placa possui os três primeiros valores alfabéticos e os quatro restantes valores numéricos.
+Sabendo que não temos uma definição do número máximo de veículos da cidade e que é preciso armazenar todos os valores em uma lista encadeada simples, construa:
+
+a. Uma função que liste todos os proprietários cujos carros são do ano de 2010 ou posterior e que sejam movidos a diesel. (1,0 ponto)
+b. Uma função que liste todas as placas que comecem com a letra J e terminem com 0, 2, 4 ou 7 e seus respectivos proprietários. (1,0 ponto)
+c. Uma função que liste o modelo e a cor dos veículos cujas placas possuem como segunda letra uma vogal e cuja soma dos valores numéricos fornece um número par. (1,0 ponto)
+d. Uma função que permita a troca de proprietário com o fornecimento do número do chassi apenas para carros com placas que não possuam nenhum dígito igual a zero. (1,0 ponto)
+*/
+//
+//Michel Marques Dos Santos
+//
 #include<stdio.h>
 #include<stdlib.h>
-#include<time.h>
-typedef struct Pessoa{
-    char nome[50];
-    int idade;
-    int id;
-    struct Pessoa *proximoDaLisa;//ponteiro que armazena o endereco do proxima pessoa
-}Pessoa;
 
-Pessoa* criarListaVazia(){
-    return NULL;
-}
+/*========= Prototipos das Funções ========*/
+    void limparTela();
 
-//funcao para criar um novo registro separado
-Pessoa* criarPessoa(){
-    Pessoa *novaPessoa = (Pessoa*)malloc(sizeof(Pessoa)); //aloca espaço na uma memoria
-    if(novaPessoa == NULL){ // validação se a memoria
-        printf("Erro de alocacao de memoria");
-        exit(EXIT_FAILURE);
-    }
-    novaPessoa->proximoDaLisa = NULL; //o prox ta como nullo, por que e o utimo da lista sempre aponta para o null
-    return novaPessoa;
-}
-//inserir informações no campo ja alocado criarPessoa()
-Pessoa* cadastrar(Pessoa *lista){ 
-    srand(time(NULL));
-    Pessoa *novaPessoa = criarPessoa(); // chamada para cria aloca memoria e colocar null no prox dela
-    novaPessoa->id = rand() % 100;
-    printf("\nDigite o nome: ");
-    fflush(stdin);
-    fgets(novaPessoa->nome, sizeof(novaPessoa->nome), stdin);
-    printf("\nDigite a idade: ");
-    scanf("%d", &novaPessoa->idade);
+//======= STRUCTS
 
-    //--> agora tem que colocar o cadastrado na lista
+/*============== EXECUÇÃO ================*/
+    int main(){
+//======= VARIAVEIS 
+int opcao;
 
-    //duas situações 1 - colocar no inicio da lista se vazia 2 - ja tem alguem na lista colocar no final e o prox e null
+//======= ESCOPO 
 
-    //verificar se a lista é nula
-    if(lista == NULL){
-        return novaPessoa; // agora a lista armazena enderesso da primeira pessoa cadastada, retornado 
-    }else{
-        Pessoa *atual = lista; 
-        while(atual->proximoDaLisa != NULL){ // percorre a lista ate achar o null, ate o atual for null, porque o ultimo da fila e null
-            atual = atual->proximoDaLisa; // pinteiro atual recebe o ponteiro do proximo da fila
-            //sai da repeticao quanto encontrar o elemento que aponta pra NULL
-        }
-        atual->proximoDaLisa = novaPessoa; // o atual que e nulll ,recebe o enderesso na nova pessoa cadastrada
-        return lista;//atualizar a lista
-    }
-}
- void mostrarLista(Pessoa *lista){
-        if(lista == NULL){ // se não tiver niguem na lista
-            printf("\nLista nula\n");
-            return;
-        }
-        else{
-            Pessoa *atual = lista; // passa a lista para atual
-            while(atual != NULL){ // sai quando o pronimo da lista for null
-                printf("\nNome: %s", atual->nome);
-                printf("Idade: %d", atual->idade);
-                printf("\nID: %d", atual->id);
-                printf("\n");
-                atual = atual->proximoDaLisa; // aponta para a proxima da lista
-            }
-        }
- }
- Pessoa* buscarPessoa(Pessoa *lista, int idBusca){
-        Pessoa *atual = lista;
-         if(lista == NULL){ // se não tiver niguem na lista
-            printf("\nLista nula\n");
-            return;
-        }else{  
-            while(atual != NULL){
-                if(atual->id == idBusca){ // compara os id busca com id do atual
-                    printf("\nNome: %s", atual->nome);
-                    printf("\nIdade: %d", atual->idade);
-                    printf("\nID: %d", atual->id);
-                    return atual; // retorna e feicha a função porque conseguil achar
-                }
-                atual = atual->proximoDaLisa;
-            }
-
-            printf("Pessoa não foi encontrada\n");
-            return NULL; // retona nullo porque não achoun niguem
-
-        }
-
-    printf("Pessoa nao encontrada");
-    return NULL;
- }
-
-void alterar(Pessoa *pessoa){ //a função faz todo o trabalho de enconta a pessoa, aqui so altera
-    printf("Alteração nos campos!!\n");
-    printf("Digite o novo nome");
-    fflush(stdin);
-    fgets(pessoa->nome, sizeof(pessoa->nome), stdin);
-    fflush(stdin);
-    printf("Digite a nova idade");
-    fflush(stdin);
-    scanf("%d", &pessoa->idade);
-
-    // não precisa retorna nada, pois não vai altera a lista, so a informação de alguem dentro da lista, não os enderreços de memoria
-    //nunca muda o id
-}
-
-
- Pessoa* excluir(Pessoa *lista, int idBusca){
-    Pessoa *atual = lista; // aponta para primeira pessoa da lista
-    Pessoa *anterior = NULL; // o primeiro sempra e null o anterior
-    // e precisso saber quem vem antes, para realocar -> ponteiro para guardar quem vem antes
-    // se não se perde na memoria
-
-    while(atual != NULL && atual->id != idBusca){ //enquanto existe alguem antes && exiate alguem depois e id foi encontrado pela busca
-    	anterior = atual;//atencao, aqui a ordem de declaracao importa (esse era nosso problema na exclusao)
-        atual = atual->proximoDaLisa;
-        // em uma ora o ponteiro atual sera null, pois e apontado para o proximo da lista    
-    }
-    // agora temos o inderesso do atual e do anterio a excluir
-    if(atual != NULL){
-        if(anterior != NULL){
-            //exclusão alguem que não exta no inicio da lista
-            anterior->proximoDaLisa = atual->proximoDaLisa;
-        }else{
-            //excluir a maria (primeiro da lista)
-            lista = atual->proximoDaLisa;
-        }
-        free(atual);// free libera endereço de memoria, para uso
-        printf("Removido com sucesso");
-    }else{// caso não encontrado
-        printf("Pessoa nao encontrada");
-    }
-    return lista; //lista com os apontamentos dos ponteiros atualizados
-}
-
-//da um free() na lista inteira, limpa toda memoria da lista, um por um da lista
-
-void liberarLista(Pessoa *lista){
-    Pessoa *atual = lista;
-    Pessoa *proximaPessoa;
-
-    while(atual != NULL){ // enquanto não chagar no final da fila
-        proximaPessoa = atual->proximoDaLisa;
-        free(atual);
-        atual = proximaPessoa;
-    }
-}
-
-
-int main(){
-    int opcao;
-    int idBusca;
-    Pessoa *encontrada;//armazenar a pessoa encontrada para excluir ou alterar
-    Pessoa *lista = criarListaVazia();//sempre vai ser o primeiro da lista
     do{
-        printf("\nDigite 1 para cadastrar");
-        printf("\nDigite 2 para mostrar");
-        printf("\nDigite 3 para buscar");
-        printf("\nDigite 4 para alterar");
-        printf("\nDigite 5 para excluir");
-        printf("\nDigite 0 para sair\n");
+        printf("\n ____________________________");
+        printf("\n/\\                           \\");
+        printf("\n\\_| MENU PRINCIPAL: digite   |");
+        printf("\n  |                          |");
+        printf("\n  |         1 ---> Cadastrar |");
+        printf("\n  |         2 ---> Mostar    |");
+        printf("\n  |         3 ---> Buscar    |");
+        printf("\n  |         1 ---> Alterar   |");
+        printf("\n  |         1 ---> Excluir   |");
+        printf("\n  |                          |");
+        printf("\n  | Digite 0 para SAIR       |");
+        printf("\n  |   _______________________|_");
+        printf("\n   \\_/_________________________/\n");
         scanf("%d", &opcao);
+
         switch(opcao){
+            case 0:
+            break;
+            
             case 1:
-                lista = cadastrar(lista); // atalizando a lista com o retorno da função
+
             break;
-            case 2:
-                mostrarLista(lista);
-            break;
-            case 3:
-                printf("Digite o id para busca:");
-                scanf("%d", &idBusca);
-                encontrada = buscarPessoa(lista, idBusca);
-            break;
-            case 4:
-                printf("\nDigite o id para Busca o id e fazer a alteracao");
-                scanf("%d", &idBusca);
-                //primeiro busca, depois pega o id do encontra e chama a função alterar
-                encontrada = buscarPessoa(lista, idBusca); // caso não encontra retorna o não encontrado do busca
-                if(encontrada != NULL){ // encontrou a pessoa então agora pode alterar
-                    alterar(encontrada);
-                }
-            break;
-            case 5:
-             printf("\nDigite o id para exclusao");
-             scanf("%d", &idBusca);
-             lista = excluir(lista, idBusca);
+
+            default:
+                limparTela();
+                printf("Opção Invalida!!!\nDigite um numeto valido\n");
+                
             break;
         }
+
     }while(opcao != 0);
 
-    liberarLista(lista); // Libera memoria
+    return 0;
+    }
 
-return 0;
-}
+/*=============== FUNÇõES =============== */
+
+//---> Limpa a tela em qualquer sistema 
+    void limparTela() {
+        #ifdef _WIN64 // Comando para limpar tela no Windows
+            system("cls");  
+        #elif _WIN32
+            system("cls");  
+        
+        #elif __linux // Comando para limpar tela no Linux
+            system("clear");
+        #else //Outros
+            printf("\nSistena não reconhecido\nNão e possivei lipar o temina");
+            getchar();
+        #endif
+    }

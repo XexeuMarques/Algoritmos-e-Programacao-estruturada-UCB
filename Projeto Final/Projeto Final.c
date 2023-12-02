@@ -22,18 +22,57 @@ d. Uma função que permita a troca de proprietário com o fornecimento do núme
 #include<stdlib.h>
 
 /*========= Prototipos das Funções ========*/
+    void limparTela();
 
 //======= STRUCTS
 
 /*============== EXECUÇÃO ================*/
     int main(){
 //======= VARIAVEIS 
+int opcao;
 
-//======= ESCOPO
+//======= ESCOPO 
+
+    do{
+        printf(" ____________________________\n");
+        printf(" /\\                           \\");
+        printf("\nDigite 1 para cadastrar");
+        printf("\nDigite 2 para mostrar");
+        printf("\nDigite 3 para buscar");
+        printf("\nDigite 4 para alterar");
+        printf("\nDigite 5 para excluir");
+        printf("\nDigite 0 para sair\n");
+        scanf("%d", &opcao);
+
+        switch(opcao){
+            case 1:
+
+            break;
+
+            default:
+                printf("Opção Invalida!!!\n");
+            break;
+        }
+
+    }while(opcao != 0);
 
     return 0;
     }
 
 /*=============== FUNÇõES =============== */
 
-//--->
+//---> Limpa a tela
+    void limparTela() {
+        #ifdef _WIN64 // Comando para limpar tela no Windows
+            system("cls");  
+        #elif _WIN32
+            system("cls");  
+        
+        #elif __linux // Comando para limpar tela no Linux
+            system("clear");
+        #else //Outros
+            printf("\nSistena não reconhecido");
+            getchar();
+        #endif
+    }
+
