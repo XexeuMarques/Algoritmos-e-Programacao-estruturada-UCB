@@ -18,19 +18,76 @@ O loop deverá continuar até que o usuário escolha sair do programa.
 #include<stdio.h>
 #include<stdlib.h>
 
-/*========= Prototipos das Funções ========*/
-
 //======= STRUCTS
+typedef struct Produto {
+  int codigo;
+  char descricao[50];
+  int quantidade;
+  float valorProduto;
+  struct Produto *proximo;//ponteiro que armazena o endereco do proximo produto
+} Produto;
+
+/*========= Prototipos das Funções ========*/
+Produto* iniciarListaVazia();
+Produto* adicionarProduto(Produto *lista);
+Produto* pesquisarProduto(Produto *lista, int);
+Produto* removerProduto(Produto *lista, int);
+void imprimirRelatorio(Produto *lista);
 
 /*============== EXECUÇÃO ================*/
     int main(){
 //======= VARIAVEIS 
+Produto *lista = iniciarListaVazia();
+int opcao;
+int idBusca;
 
 //======= ESCOPO
+
+    Produto *encontrada;//armazenar a pessoa encontrada para excluir ou alterar
+
+    do{
+        printf("\nDigite 1 para adicinar um produto");
+        printf("\nDigite 2 para gerar relatorio dos produtos");
+        printf("\nDigite 3 para buscar por produto");
+        printf("\nDigite 0 para remover um");
+        printf("\nDigite 0 para sair");
+        scanf("%d", &opcao);
+        switch(opcao){
+            case 1:
+                lista = adicionarProduto(lista);
+            break;
+            case 2:
+                imprimirRelatorio(lista);
+            break;
+            case 3:
+                printf("Digite o id para busca");
+                scanf("%d", &idBusca);
+                encontrada = pesquisarProduto(lista, idBusca);
+            break;
+
+            case 5:
+                printf("\nDigite o id para exclusao");
+                scanf("%d", &idBusca);
+                lista = removerProduto(lista, idBusca);
+            break;
+        }
+    }while(opcao != 0);
+
 
     return 0;
     }
 
 /*=============== FUNÇõES =============== */
 
-//--->
+//---> Iniciar lista vazia
+    Produto* iniciarListaVazia(){
+        return NULL;
+    }
+
+//---> adiciona um novo produto
+
+//---> Imprimir todos os produtos na tela
+
+//---> Faz a busca do produto pelo codgo
+
+//---> apaga um produto

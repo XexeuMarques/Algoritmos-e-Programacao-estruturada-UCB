@@ -17,6 +17,7 @@ d. Uma função que permita a troca de proprietário com o fornecimento do núme
 */
 //
 //Michel Marques Dos Santos
+//Desenho no terminal feito "boxes"
 //
 #include<stdio.h>
 #include<stdlib.h>
@@ -185,15 +186,18 @@ setlocale(LC_ALL, "Portuguese");
             }
             else{
                 while(atual != NULL){
-                    printf("\nNome do proprietario: %s", atual->Proprietario);
-                    printf("\nCor do veiculo: %s", atual->cor);
-                    printf("Tipo combustiveu: %d", atual->tipoDeCombustivel);
+                    printf("\n/*       _\\|/_");
+                    printf("\n         (o o)");
+                    printf("\n +----oOO-{_}-OOo----------------------+\n|");
+                    printf("\n|  Nome do proprietario: %s", atual->Proprietario);
+                    printf("\n|  Cor do veiculo: %s", atual->cor);
+                    printf("\n|  Tipo combustiveu: %d", atual->tipoDeCombustivel);
                     // Printa futura validação do combustivel
-                    printf("Ano do veiculo: %d", atual->ano);
-                    printf("Chassi do Veiculo: %s", atual->chassi);
-                    printf("Placa do Veiculo: %s", atual->chassi);
-                    printf("\nID: %d", atual->id);
-                    printf("\n");
+                    printf("\n|  Ano do veiculo: %d", atual->ano);
+                    printf("\n|  Chassi do Veiculo: %s", atual->chassi);
+                    printf("\n|  Placa do Veiculo: %s", atual->chassi);
+                    printf("\n|\n|          ID: %d", atual->id);
+                    printf("\n|\n +------------------------------------*/");
                     atual = atual->proximo;
                 }
             }
@@ -243,7 +247,10 @@ setlocale(LC_ALL, "Portuguese");
         scanf("%d", &Veiculo->ano);
 
         printf("Tipo de combustivel: ");
-        printf("1 --> para álcool \n2 --> para diesel \3 --> gasolina \n"); /// !!! ATENÇÃO !!! Criar um validador aqui estilo atividade avaliativa 2-1
+        printf("\n1 --> para álcool"); 
+        printf("\n2 --> para diesel");
+        printf("\n3 --> gasolina \n");
+        /// !!! ATENÇÃO !!! Criar um validador aqui estilo atividade avaliativa 2-1
         scanf("%d", &Veiculo->tipoDeCombustivel);
     }
 
