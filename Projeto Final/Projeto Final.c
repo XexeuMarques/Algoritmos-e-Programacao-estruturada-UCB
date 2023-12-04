@@ -21,6 +21,7 @@ d. Uma função que permita a troca de proprietário com o fornecimento do núme
 //
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #include<locale.h>
 #include<time.h>
 
@@ -28,6 +29,7 @@ d. Uma função que permita a troca de proprietário com o fornecimento do núme
     typedef struct Veiculo{
         int id;
         char Proprietario[20];
+        char modelo[50];
         char cor[20];
         char chassi[20];
         char placa[10];
@@ -46,6 +48,8 @@ d. Uma função que permita a troca de proprietário com o fornecimento do núme
     void alterar(Veiculo *Veiculo);
     void limparTela();
     void listarDiesel2010OuPosterior(Veiculo *lista);
+    void listarPlacasJ(Veiculo *lista);
+    void listarModeloCorVogalSomaPar(Veiculo *lista);
    // int validaCombustivel(Veiculo tipoDeCombustivel);    
 
 /*============== EXECUÇÃO ================*/
@@ -114,6 +118,10 @@ setlocale(LC_ALL, "Portuguese");
                 listarDiesel2010OuPosterior(lista);
             break;
 
+            case 7:
+                listarPlacasJ(lista);
+            break;
+
             default:// O que acontece se nem um das opções for escolida
                 limparTela();
                 printf("Opção Invalida!!!\nDigite um numeto valido\n");
@@ -149,7 +157,11 @@ setlocale(LC_ALL, "Portuguese");
         printf("Nome do proprietario: ");
         fflush(stdin);
         fgets(novoVeiculo->Proprietario, sizeof(novoVeiculo->Proprietario), stdin);
-        
+
+        printf("Qual modelo do carro: ");
+        fflush(stdin);
+        fgets(novoVeiculo->modelo, sizeof(novoVeiculo->modelo), stdin);
+
         printf("Cor do veiculo: ");
         fflush(stdin);
         fgets(novoVeiculo->cor, sizeof(novoVeiculo->cor), stdin);
@@ -196,6 +208,7 @@ setlocale(LC_ALL, "Portuguese");
                     printf("\n         (o o)");
                     printf("\n +----oOO-{_}-OOo----------------------+\n|");
                     printf("\n|  Nome do proprietario: %s", atual->Proprietario);
+                    printf("\n|  Modelo do veiculo: %s", atual->modelo);
                     printf("\n|  Cor do veiculo: %s", atual->cor);
                     printf("\n|  Tipo combustiveu: %d", atual->tipoDeCombustivel);
                     // Printa futura validação do combustivel
@@ -215,6 +228,7 @@ setlocale(LC_ALL, "Portuguese");
             while(atual != NULL){
                 if(atual->id == idBusca){
                     printf("\nNome do proprietario: %s", atual->Proprietario);
+                    printf("\nModelo do veiculo: %s", atual->modelo);
                     printf("\nCor do veiculo: %s", atual->cor);
                     printf("Tipo combustiveu: %d", atual->tipoDeCombustivel);
                     // Printa futura validação do combustivel
@@ -236,6 +250,10 @@ setlocale(LC_ALL, "Portuguese");
         printf("Digite nome do novo proprietario: ");
         fflush(stdin);
         fgets(Veiculo->Proprietario, sizeof(Veiculo->Proprietario), stdin);
+
+        printf("Qual modelo do carro: ");
+        fflush(stdin);
+        fgets(Veiculo->modelo, sizeof(Veiculo->modelo), stdin);
 
         printf("Cor do veiculo: ");
         fflush(stdin);
@@ -324,9 +342,47 @@ void liberarLista(Veiculo *lista){
                 if (atual->ano >= 2010 && atual->tipoDeCombustivel == 2) {
                     printf("Nome do proprietario: %s \n", atual->Proprietario);
                 }
+                atual = atual->proximo;
             }
         }
     }   
+
+//---> liste todas as placas que comecem com a letra J
+    void listarPlacasJ(Veiculo *lista){
+        Veiculo *atual = lista;
+        if(lista == NULL){
+            printf("\nLista nula\n");
+            return;
+        }
+        else{
+            while(atual != NULL){
+                if (atual->placa[0] == 'J' && (atual->placa[6] == '0' || atual->placa[6] == '2' || atual->placa[6] == '4' || atual->placa[6] == '7')) {
+                    printf("Nome do proprietario: %s \n", atual->Proprietario);
+                }
+                atual = atual->proximo;
+            }
+        }        
+    }
+
+//---> listar modelo e cor dos veículos com placas de segunda letra vogal e soma dos valores numéricos é par
+    void listarModeloCorVogalSomaPar(Veiculo *lista){
+        Veiculo *atual = lista;
+        if(lista == NULL){
+            printf("\nLista nula\n");
+            return;
+        }
+        else{
+            while(atual != NULL){
+                if (strchr("aeiouAEIOU", atual->placa[1]) != NULL) {
+                            int somaDigitos = atoi(atual->placa + 3) + atoi(atual->placa + 4) + atoi(atual->placa + 5) + atoi(atual->placa + 6);
+                            if (somaDigitos % 2 == 0) {
+                                printf("Modelo: %s, Cor: %s\n", atual->modelo, atual->cor);
+                            }
+                }
+            atual = atual->proximo;
+            }        
+        }
+    }
 
 //---> Pausa o terminal
   //  void pausarTela(const char *mensagem) {
