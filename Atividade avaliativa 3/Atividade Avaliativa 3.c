@@ -60,7 +60,7 @@ int idBusca;
                 imprimirRelatorio(lista);
             break;
             case 3:
-                printf("Digite o id para busca");
+                printf("Digite o codigo do produto para busca: ");
                 scanf("%d", &idBusca);
                 encontrada = pesquisarProduto(lista, idBusca);
             break;
@@ -85,9 +85,104 @@ int idBusca;
     }
 
 //---> adiciona um novo produto
+    Produto* criarProduto(){
+        Produto *novoProduto = (Produto*)malloc(sizeof(Produto));
+        if(novoProduto == NULL){
+            printf("Erro de alocacao de memoria");
+            exit(EXIT_FAILURE);
+        }
+        novoProduto->proximo = NULL;
+        return novoProduto;
+    }
+    Produto* adicionarProduto(Produto *lista){
+        Produto *novoProduto = criarProduto();
+
+        printf("Digite o codgo do produto: ");
+        scanf("%d", &novoProduto->codigo);
+
+        printf("Digite a descricao do produto: ");
+        fflush(stdin);
+        fgets(novoProduto->descricao, sizeof(novoProduto->descricao), stdin);
+
+        printf("Quantidade do produto: ");
+        scanf("%d", &novoProduto->quantidade);
+
+        printf("qual valor do codgo do produto: ");
+        scanf("%f", &novoProduto->valorProduto);
+
+        //verificar se a lista é nula
+        if(lista == NULL){
+            return novoProduto;
+        }else{
+            Produto *atual = lista;
+            while(atual->proximo != NULL){
+                atual = atual->proximo;
+                //sai da repeticao quanto encontrar o elemento que aponta pra NULL
+            }
+            atual->proximo = novoProduto;
+            return lista;//atualizar a lista 
+        }
+    }
 
 //---> Imprimir todos os produtos na tela
+    void imprimirRelatorio(Produto *lista){
+            Produto *atual = lista;
+            if(lista == NULL){
+                printf("\nLista nula\n");
+                return;
+            }
+            else{
+                while(atual != NULL){
+                    printf("\nDiscrição:         %s", atual->descricao);
+                    printf("\nQuantidade:        %d", atual->quantidade);
+                    printf("\nValor:             %.2f", atual->valorProduto);
+                    printf("\nCodigo do produto: %d", atual->quantidade);
+                    printf("\n");
+                    atual = atual->proximo;
+                }
+            }
+    }
 
 //---> Faz a busca do produto pelo codgo
+    Produto* pesquisarProduto(Produto *lista, int idBusca){
+        Produto *atual = lista;
+            while(atual != NULL){
+                if(atual->codigo == idBusca){
+                    printf("\nDiscrição:         %s", atual->descricao);
+                    printf("\nQuantidade:        %d", atual->quantidade);
+                    printf("\nValor:             %.2f", atual->valorProduto);
+                    printf("\nCodigo do produto: %d", atual->quantidade);
+                    printf("\n");
+                    return atual;
+                }
+                atual = atual->proximo;
+            }
+        printf("Pessoa nao encontrada");
+        return NULL;
+    }
 
 //---> apaga um produto
+    Produto* removerProduto(Produto *lista, int idBusca){
+        Produto *atual = lista;
+        Produto *anterior = NULL;
+
+        while(atual != NULL && atual->codigo != idBusca){
+            anterior = atual;//atencao, aqui a ordem de declaracao importa (esse era nosso problema na exclusao)
+            atual = atual->proximo;
+            
+        }
+        if(atual != NULL){
+            if(anterior != NULL){
+                //exclusão alguem depois da maria
+                anterior->proximo = atual->proximo;
+            }else{
+                //excluir a maria (primeiro da lista)
+                lista = atual->proximo;
+            }
+            free(atual);
+            printf("Removido com sucesso");
+        }else{
+            printf("Produto nao encontrada");
+        }
+        return lista;
+    }
