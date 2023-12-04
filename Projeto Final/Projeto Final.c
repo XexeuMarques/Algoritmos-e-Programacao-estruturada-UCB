@@ -45,6 +45,7 @@ d. Uma função que permita a troca de proprietário com o fornecimento do núme
     void mostrarLista(Veiculo *lista);
     void alterar(Veiculo *Veiculo);
     void limparTela();
+    void listarDiesel2010OuPosterior(Veiculo *lista);
    // int validaCombustivel(Veiculo tipoDeCombustivel);    
 
 /*============== EXECUÇÃO ================*/
@@ -68,6 +69,7 @@ setlocale(LC_ALL, "Portuguese");
         printf("\n  |   3 --> Buscar por veículo   |");
         printf("\n  |   4 --> Alterar um veículo   |");
         printf("\n  |   5 --> Excluir um veículo   |");
+        printf("\n  |   6 --> Para função A        |");
         printf("\n  |                              |");
         printf("\n  | Digite 0 para SAIR           |");
         printf("\n  |   ___________________________|_");
@@ -106,6 +108,10 @@ setlocale(LC_ALL, "Portuguese");
                 printf("\nDigite do Veiculo id para exclusão");
                 scanf("%d", &idBusca);
                 lista = excluir(lista, idBusca);
+            break;
+
+            case 6:
+                listarDiesel2010OuPosterior(lista);
             break;
 
             default:// O que acontece se nem um das opções for escolida
@@ -305,6 +311,22 @@ void liberarLista(Veiculo *lista){
             getchar();
         #endif
     }
+
+//---> Lista carros do ano de 2010 ou posterior e que sejam movidos a diesel
+    void listarDiesel2010OuPosterior(Veiculo *lista){
+        Veiculo *atual = lista;
+        if(lista == NULL){
+            printf("\nLista nula\n");
+            return;
+        }
+        else{
+            while(atual != NULL){
+                if (atual->ano >= 2010 && atual->tipoDeCombustivel == 2) {
+                    printf("Nome do proprietario: %s \n", atual->Proprietario);
+                }
+            }
+        }
+    }   
 
 //---> Pausa o terminal
   //  void pausarTela(const char *mensagem) {
