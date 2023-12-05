@@ -54,6 +54,7 @@ d. Uma função que permita a troca de proprietário com o fornecimento do núme
     // Outros
     void despedidaAleatoria();
     void limparTela();
+    int validadorCombustivel(int);
    // int validaCombustivel(Veiculo tipoDeCombustivel);    
 
 /*============== EXECUÇÃO ================*/
@@ -89,6 +90,7 @@ setlocale(LC_ALL, "Portuguese");
         printf("|   Escolha uma opcao:                     |\n");
         printf("============================================\n");
         scanf("%d", &opcao);
+        void limparTela();
 
         switch(opcao){
             case 0:// coisas para acontecer quando sair
@@ -104,13 +106,13 @@ setlocale(LC_ALL, "Portuguese");
             break;
 
             case 3: // Busca os veiculos cadastrados(Pesquisa)
-                printf("Digite o id para busca");
+                printf("Digite o id para busca: ");
                 scanf("%d", &idBusca);
                 encontrado = buscarVeiculo(lista, idBusca);
             break;
 
             case 4:// Altera as informações de algum veiculo cadastrado
-                printf("\nDigite o do veiculo id para alteração");
+                printf("\nDigite o do veiculo id para alteração: ");
                 scanf("%d", &idBusca);
                 encontrado = buscarVeiculo(lista, idBusca);
                 if(encontrado != NULL){
@@ -119,7 +121,7 @@ setlocale(LC_ALL, "Portuguese");
             break;
 
             case 5:// Exclui algum veiculo da lista
-                printf("\nDigite do Veiculo id para exclusão");
+                printf("\nDigite do Veiculo id para exclusão: ");
                 scanf("%d", &idBusca);
                 lista = excluir(lista, idBusca);
             break;
@@ -148,7 +150,11 @@ setlocale(LC_ALL, "Portuguese");
 
             default:// O que acontece se nem um das opções for escolida
                 limparTela();
-                printf("Opção Invalida!!!\nDigite um numeto valido\n");
+                printf("/***************************/\n");
+                printf("/*       Opção invalida!   */\n");
+                printf("/* Digite uma opção valida */\n");
+                printf("/                           /\n");
+                printf("/***************************/\n");
                 
             break;
         }
@@ -165,7 +171,9 @@ setlocale(LC_ALL, "Portuguese");
     Veiculo* criarVeiculo(){
         Veiculo *novoVeiculo = (Veiculo*)malloc(sizeof(Veiculo));
         if(novoVeiculo == NULL){
-            printf("Erro de alocação de memoria");
+            printf("/*****************************/\n");
+            printf("/ Erro de alocação de memoria /\n");
+            printf("/*****************************/\n");
             exit(EXIT_FAILURE);//tipo de tratamento de erro
         }
         novoVeiculo->proximo = NULL;
@@ -174,36 +182,52 @@ setlocale(LC_ALL, "Portuguese");
 
 //---> Cadastra as informações do veiculo na memoria ja alocada
     Veiculo* cadastrar(Veiculo *lista){
+        int valido;
         srand(time(NULL));
         Veiculo *novoVeiculo = criarVeiculo();
         novoVeiculo->id = rand() % 1000;
 
         printf("Nome do proprietario: ");
         fflush(stdin);
-        fgets(novoVeiculo->Proprietario, sizeof(novoVeiculo->Proprietario), stdin);
+        //fgets(novoVeiculo->Proprietario, sizeof(novoVeiculo->Proprietario), stdin);
+        scanf("%s", novoVeiculo->Proprietario);
 
-        printf("Qual modelo do carro: ");
+        printf("\nQual modelo do carro: ");
         fflush(stdin);
         fgets(novoVeiculo->modelo, sizeof(novoVeiculo->modelo), stdin);
 
-        printf("Cor do veiculo: ");
+        printf("\nCor do veiculo: ");
         fflush(stdin);
         fgets(novoVeiculo->cor, sizeof(novoVeiculo->cor), stdin);
 
-        printf("Numero do chassi: ");
+        printf("\nNumero do chassi: ");
         fflush(stdin);
         fgets(novoVeiculo->chassi, sizeof(novoVeiculo->chassi), stdin);
 
-        printf("Placa do veiculo: ");
+        printf("\nPlaca do veiculo: ");
         fflush(stdin);
         fgets(novoVeiculo->placa, sizeof(novoVeiculo->placa), stdin);
 
-        printf("Ano de fabricação do veiculo: ");
+        printf("\nAno de fabricação do veiculo: ");
         scanf("%d", &novoVeiculo->ano);
 
-        printf("Tipo de combustivel: ");
-        printf("1 --> para álcool \n2 --> para diesel \3 --> gasolina \n"); /// !!! ATENÇÃO !!! Criar um validador aqui estilo atividade avaliativa 2-1
+        printf("\nTipo de combustivel: ");
+        printf("\n1 --> para álcool \n2 --> para diesel \n3 --> gasolina \n");
         scanf("%d", &novoVeiculo->tipoDeCombustivel);
+
+        do {
+            printf("Tipo de combustivel: ");
+            printf("\n1 --> para álcool"); 
+            printf("\n2 --> para diesel");
+            printf("\n3 --> gasolina \n");
+            scanf("%d", &novoVeiculo->tipoDeCombustivel);
+            valido = validadorCombustivel(novoVeiculo->tipoDeCombustivel);
+            if (valido == 1) {
+                printf("\n/*********************************/\n");
+                printf("/ Opção invalida! tente novamente /\n");
+                printf("/*********************************/\n");
+            }
+        }while (valido == 1);
 
         //verificar se a lista é nula
         if(lista == NULL){
@@ -228,19 +252,18 @@ setlocale(LC_ALL, "Portuguese");
             }
             else{
                 while(atual != NULL){
-                    printf("\n/*       _\\|/_");
-                    printf("\n         (o o)");
-                    printf("\n +----oOO-{_}-OOo----------------------+\n|");
-                    printf("\n|  Nome do proprietario: %s", atual->Proprietario);
+                    printf("\n============================================\n");
+                    printf("|  Nome do proprietario: %s", atual->Proprietario);
+                    printf("\n============================================");
                     printf("\n|  Modelo do veiculo: %s", atual->modelo);
                     printf("\n|  Cor do veiculo: %s", atual->cor);
-                    printf("\n|  Tipo combustiveu: %d", atual->tipoDeCombustivel);
-                    // Printa futura validação do combustivel
+                    printf("\n|  Tipo combustiveu: %d", validadorCombustivel(atual->tipoDeCombustivel));
                     printf("\n|  Ano do veiculo: %d", atual->ano);
                     printf("\n|  Chassi do Veiculo: %s", atual->chassi);
                     printf("\n|  Placa do Veiculo: %s", atual->chassi);
-                    printf("\n|\n|          ID: %d", atual->id);
-                    printf("\n|\n +------------------------------------*/");
+                    printf("\n============================================");
+                    printf("\n      ID: %d", atual->id);
+                    printf("\n============================================\n");
                     atual = atual->proximo;
                 }
             }
@@ -251,21 +274,25 @@ setlocale(LC_ALL, "Portuguese");
         Veiculo *atual = lista;
             while(atual != NULL){
                 if(atual->id == idBusca){
-                    printf("\nNome do proprietario: %s", atual->Proprietario);
-                    printf("\nModelo do veiculo: %s", atual->modelo);
-                    printf("\nCor do veiculo: %s", atual->cor);
-                    printf("Tipo combustiveu: %d", atual->tipoDeCombustivel);
-                    // Printa futura validação do combustivel
-                    printf("Ano do veiculo: %d", atual->ano);
-                    printf("Chassi do Veiculo: %s", atual->chassi);
-                    printf("Placa do Veiculo: %s", atual->chassi);
-                    printf("\nID: %d", atual->id);
-                    printf("\n");
+                    printf("\n============================================\n");
+                    printf("|  Nome do proprietario: %s", atual->Proprietario);
+                    printf("\n============================================");
+                    printf("\n|  Modelo do veiculo: %s", atual->modelo);
+                    printf("\n|  Cor do veiculo: %s", atual->cor);
+                    printf("\n|  Tipo combustiveu: %d", validadorCombustivel(atual->tipoDeCombustivel));
+                    printf("\n|  Ano do veiculo: %d", atual->ano);
+                    printf("\n|  Chassi do Veiculo: %s", atual->chassi);
+                    printf("\n|  Placa do Veiculo: %s", atual->chassi);
+                    printf("\n============================================");
+                    printf("\n      ID: %d", atual->id);
+                    printf("\n============================================\n");
                     return atual;
                 }
                 atual = atual->proximo;
             }
-        printf("Veiculo nao encontrada");
+        printf("/*****************************/\n");
+        printf("/   Veiculo nao encontrado    /");
+        printf("/*****************************/\n");
         return NULL;
     }
 
@@ -277,41 +304,52 @@ setlocale(LC_ALL, "Portuguese");
                 }
                atual = atual->proximo; 
             }
-        printf("Veiculo nao encontrada");
+        printf("/*****************************/\n");
+        printf("/   Veiculo nao encontrado    /");
+        printf("/*****************************/\n");
         return NULL;
     }
 
 //---> Altera as informações dos veiculos cadastrados
     void alterar(Veiculo *Veiculo){
-        printf("Digite nome do novo proprietario: ");
+        int valido;
+
+        printf("\nDigite nome do novo proprietario: ");
         fflush(stdin);
         fgets(Veiculo->Proprietario, sizeof(Veiculo->Proprietario), stdin);
 
-        printf("Qual modelo do carro: ");
+        printf("\nQual modelo do carro: ");
         fflush(stdin);
         fgets(Veiculo->modelo, sizeof(Veiculo->modelo), stdin);
 
-        printf("Cor do veiculo: ");
+        printf("\nCor do veiculo: ");
         fflush(stdin);
         fgets(Veiculo->cor, sizeof(Veiculo->cor), stdin);
 
-        printf("Numero do chassi: ");
+        printf("\nNumero do chassi: ");
         fflush(stdin);
         fgets(Veiculo->chassi, sizeof(Veiculo->chassi), stdin);
 
-        printf("Placa do veiculo: ");
+        printf("\nPlaca do veiculo: ");
         fflush(stdin);
         fgets(Veiculo->placa, sizeof(Veiculo->placa), stdin);
 
-        printf("Ano de fabricação do veiculo: ");
+        printf("\nAno de fabricação do veiculo: ");
         scanf("%d", &Veiculo->ano);
 
-        printf("Tipo de combustivel: ");
-        printf("\n1 --> para álcool"); 
-        printf("\n2 --> para diesel");
-        printf("\n3 --> gasolina \n");
-        /// !!! ATENÇÃO !!! Criar um validador aqui estilo atividade avaliativa 2-1
-        scanf("%d", &Veiculo->tipoDeCombustivel);
+        do {
+            printf("Tipo de combustivel: ");
+            printf("\n1 --> para álcool"); 
+            printf("\n2 --> para diesel");
+            printf("\n3 --> gasolina \n");
+            scanf("%d", &Veiculo->tipoDeCombustivel);
+            valido = validadorCombustivel(Veiculo->tipoDeCombustivel);
+            if (valido == 1) {
+                printf("\n/*********************************/\n");
+                printf("/ Opção invalida! tente novamente /\n");
+                printf("/*********************************/\n");
+            }
+        }while (valido == 1);
     }
 
 //---> Exclui algum veiculo da lista
@@ -333,9 +371,9 @@ setlocale(LC_ALL, "Portuguese");
                 lista = atual->proximo;
             }
             free(atual);
-            printf("Removido com sucesso");
+            printf("\nRemovido com sucesso !!!");
         }else{
-            printf("Veiculo nao encontrada");
+            printf("\nVeiculo nao encontrada !!!");
         }
         return lista;
     }
@@ -456,4 +494,22 @@ void despedidaAleatoria() {
 }
 
 //---> Valida e entrega tipo de combustivel
-//int validaCombustivel(Veiculo tipoDeCombustivel){}
+int validadorCombustivel(int comubustivel){
+    switch (comubustivel) {
+        case 1:
+        printf("álcool");
+        return 0;
+        break;
+        
+        case 2:
+        printf("diesel");
+        return 1;
+        break;
+
+        case 3:
+        printf("gasolina");
+        return 1;
+        break;
+    }
+    return 1;
+}
