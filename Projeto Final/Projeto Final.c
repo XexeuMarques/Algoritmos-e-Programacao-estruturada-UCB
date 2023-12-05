@@ -42,14 +42,18 @@ d. Uma função que permita a troca de proprietário com o fornecimento do núme
 /*========= Prototipos das Funções ========*/
     Veiculo* cadastrar(Veiculo *lista);
     Veiculo* buscarVeiculo(Veiculo *lista, int);
+    Veiculo* BuscaPorChassi(Veiculo *lista, char chassiBusca[20]);
     Veiculo* excluir(Veiculo *lista, int);
     void liberarLista(Veiculo *lista);
     void mostrarLista(Veiculo *lista);
     void alterar(Veiculo *Veiculo);
-    void limparTela();
     void listarDiesel2010OuPosterior(Veiculo *lista);
     void listarPlacasJ(Veiculo *lista);
     void listarModeloCorVogalSomaPar(Veiculo *lista);
+    void trocarProprietarioSemZero(Veiculo *Veiculo);
+    // Outros
+    void despedidaAleatoria();
+    void limparTela();
    // int validaCombustivel(Veiculo tipoDeCombustivel);    
 
 /*============== EXECUÇÃO ================*/
@@ -57,6 +61,7 @@ d. Uma função que permita a troca de proprietário com o fornecimento do núme
 //======= VARIAVEIS main
 int opcao;
 int idBusca;
+char chassiBusca[20];
 Veiculo *encontrado;//armazenar o veiculo encontrada para excluir ou alterar
 Veiculo *lista = NULL;
 
@@ -64,25 +69,30 @@ Veiculo *lista = NULL;
 setlocale(LC_ALL, "Portuguese");
 
     do{
-        printf("\n ____________________________");
-        printf("\n/\\                           \\");
-        printf("\n\\_| MENU PRINCIPAL: digite      |");
-        printf("\n  |                              |");
-        printf("\n  |   1 --> Cadastrar veículo    |"); 
-        printf("\n  |   2 --> Mostar veículos      |");
-        printf("\n  |   3 --> Buscar por veículo   |");
-        printf("\n  |   4 --> Alterar um veículo   |");
-        printf("\n  |   5 --> Excluir um veículo   |");
-        printf("\n  |   6 --> Para função A        |");
-        printf("\n  |                              |");
-        printf("\n  | Digite 0 para SAIR           |");
-        printf("\n  |   ___________________________|_");
-        printf("\n   \\_/_________________________/\n");
+
+        printf("\n============================================\n");
+        printf("|      Menu Principal                      |\n");
+        printf("|==========================================|\n");
+        printf("|    1. Cadastrar veículo                  |\n");
+        printf("|    2. Mostar veículos                    |\n");
+        printf("|    3. Buscar por veículo                 |\n");
+        printf("|    4. Alterar um veículo                 |\n");
+        printf("|    5. Excluir um veículo                 |\n");
+        printf("|==========================================|\n");
+        printf("|    6. Função [A] do projeto              |\n");
+        printf("|    7. Função [B] do projeto              |\n");
+        printf("|    8. Função [C] do projeto              |\n");
+        printf("|    8. Função [D] do projeto              |\n");
+        printf("|                                          |\n");
+        printf("|    0. Sair do programa                   |\n");
+        printf("|==========================================|\n");
+        printf("|   Escolha uma opcao:                     |\n");
+        printf("============================================\n");
         scanf("%d", &opcao);
 
         switch(opcao){
             case 0:// coisas para acontecer quando sair
-            
+                despedidaAleatoria();
             break;
             
             case 1:// Cadastra os veiculos 
@@ -120,6 +130,20 @@ setlocale(LC_ALL, "Portuguese");
 
             case 7:
                 listarPlacasJ(lista);
+            break;
+
+            case 8:
+            listarModeloCorVogalSomaPar(lista);
+            break;
+
+            case 9:
+                printf("Digite o chassi do veiculo: ");
+                fgets(chassiBusca, sizeof(chassiBusca), stdin);
+                encontrado = BuscaPorChassi(lista, chassiBusca);
+                if (encontrado != NULL) {
+                    trocarProprietarioSemZero(encontrado);
+                }
+                
             break;
 
             default:// O que acontece se nem um das opções for escolida
@@ -240,6 +264,18 @@ setlocale(LC_ALL, "Portuguese");
                     return atual;
                 }
                 atual = atual->proximo;
+            }
+        printf("Veiculo nao encontrada");
+        return NULL;
+    }
+
+    Veiculo* BuscaPorChassi(Veiculo *lista, char chassiBusca[20]){
+        Veiculo *atual = lista;
+            while (atual != NULL) {
+                if (atual->chassi == chassiBusca) {
+                    return atual;
+                }
+               atual = atual->proximo; 
             }
         printf("Veiculo nao encontrada");
         return NULL;
@@ -384,12 +420,40 @@ void liberarLista(Veiculo *lista){
         }
     }
 
+//---> Função para trocar o proprietário com base no número do chassi para carros sem dígito igual a zero na placa
+    void trocarProprietarioSemZero(Veiculo *Veiculo){
+        printf("Digite nome do novo proprietario: ");
+        fflush(stdin);
+        fgets(Veiculo->Proprietario, sizeof(Veiculo->Proprietario), stdin);        
+    }
+
 //---> Pausa o terminal
   //  void pausarTela(const char *mensagem) {
   //  printf("%s", mensagem);
 //    getchar();  // Aguarda a entrada de um caractere
 //}
 
+//---> Função de frase de despedida aleatória
+void despedidaAleatoria() {
+    srand(time(NULL));
+    int escolha = 1 + rand() % (4 - 1 + 1);
+    switch (escolha) {
+        case 1:
+            printf("Até logo! Volte em breve.\n");
+            break;
+        case 2:
+            printf("Obrigado pela visita. Até a próxima!\n");
+            break;
+        case 3:
+            printf("Tenha um ótimo dia! Até mais.\n");
+            break;
+        case 4:
+            printf("Foi um prazer ajudar. Até a próxima vez!\n");
+            break;
+        default:
+            break;
+    }
+}
 
 //---> Valida e entrega tipo de combustivel
 //int validaCombustivel(Veiculo tipoDeCombustivel){}
