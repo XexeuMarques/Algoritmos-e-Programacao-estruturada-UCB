@@ -17,7 +17,6 @@ d. Uma função que permita a troca de proprietário com o fornecimento do núme
 */
 //
 //Michel Marques Dos Santos
-//Desenho no terminal feito "boxes"
 //
 #include<stdio.h>
 #include<stdlib.h>
@@ -28,11 +27,11 @@ d. Uma função que permita a troca de proprietário com o fornecimento do núme
 //======= STRUCTS
     typedef struct Veiculo{
         int id;
-        char Proprietario[20];
-        char modelo[50];
-        char cor[20];
-        char chassi[20];
-        char placa[10];
+        char *Proprietario;
+        char *modelo;
+        char *cor;
+        char *chassi;
+        char *placa;
         int ano;
         int tipoDeCombustivel; //1 - álcool, 2 - diesel, 3 - gasolina
         struct Veiculo *proximo; //ponteiro que armazena o endereco do proxima veiculo
@@ -190,23 +189,29 @@ setlocale(LC_ALL, "Portuguese");
         printf("Nome do proprietario: ");
         fflush(stdin);
         //fgets(novoVeiculo->Proprietario, sizeof(novoVeiculo->Proprietario), stdin);
-        scanf("%s", novoVeiculo->Proprietario);
+        scanf("%ms", &novoVeiculo->Proprietario);
 
         printf("\nQual modelo do carro: ");
         fflush(stdin);
-        fgets(novoVeiculo->modelo, sizeof(novoVeiculo->modelo), stdin);
+        //fgets(novoVeiculo->modelo, sizeof(novoVeiculo->modelo), stdin);
+        novoVeiculo->modelo = (char *)malloc(50 * sizeof(char));
+        scanf("%ms", &novoVeiculo->modelo)
+        ;
 
         printf("\nCor do veiculo: ");
         fflush(stdin);
-        fgets(novoVeiculo->cor, sizeof(novoVeiculo->cor), stdin);
+        //fgets(novoVeiculo->cor, sizeof(novoVeiculo->cor), stdin);
+        scanf("%ms", &novoVeiculo->cor);
 
         printf("\nNumero do chassi: ");
         fflush(stdin);
-        fgets(novoVeiculo->chassi, sizeof(novoVeiculo->chassi), stdin);
+        //fgets(novoVeiculo->chassi, sizeof(novoVeiculo->chassi), stdin);
+        scanf("%ms", &novoVeiculo->chassi);
 
         printf("\nPlaca do veiculo: ");
         fflush(stdin);
-        fgets(novoVeiculo->placa, sizeof(novoVeiculo->placa), stdin);
+        //fgets(novoVeiculo->placa, sizeof(novoVeiculo->placa), stdin);
+        scanf("%ms", &novoVeiculo->placa);
 
         printf("\nAno de fabricação do veiculo: ");
         scanf("%d", &novoVeiculo->ano);
@@ -316,23 +321,28 @@ setlocale(LC_ALL, "Portuguese");
 
         printf("\nDigite nome do novo proprietario: ");
         fflush(stdin);
-        fgets(Veiculo->Proprietario, sizeof(Veiculo->Proprietario), stdin);
+        //fgets(Veiculo->Proprietario, sizeof(Veiculo->Proprietario), stdin);
+        scanf("%ms", &Veiculo->Proprietario);
 
         printf("\nQual modelo do carro: ");
         fflush(stdin);
-        fgets(Veiculo->modelo, sizeof(Veiculo->modelo), stdin);
+        //fgets(Veiculo->modelo, sizeof(Veiculo->modelo), stdin);
+        scanf("%ms", &Veiculo->modelo);
 
         printf("\nCor do veiculo: ");
         fflush(stdin);
-        fgets(Veiculo->cor, sizeof(Veiculo->cor), stdin);
+        //fgets(Veiculo->cor, sizeof(Veiculo->cor), stdin);
+        scanf("%ms", &Veiculo->cor);
 
         printf("\nNumero do chassi: ");
         fflush(stdin);
-        fgets(Veiculo->chassi, sizeof(Veiculo->chassi), stdin);
+        //fgets(Veiculo->chassi, sizeof(Veiculo->chassi), stdin);
+        scanf("%ms", &Veiculo->chassi);
 
         printf("\nPlaca do veiculo: ");
         fflush(stdin);
-        fgets(Veiculo->placa, sizeof(Veiculo->placa), stdin);
+        //fgets(Veiculo->placa, sizeof(Veiculo->placa), stdin);
+        scanf("%ms", &Veiculo->placa);
 
         printf("\nAno de fabricação do veiculo: ");
         scanf("%d", &Veiculo->ano);
@@ -477,16 +487,24 @@ void despedidaAleatoria() {
     int escolha = 1 + rand() % (4 - 1 + 1);
     switch (escolha) {
         case 1:
-            printf("Até logo! Volte em breve.\n");
+            printf("\n/*********************************/");
+            printf("\n|    Até logo! Volte em breve.    \n|");
+            printf("\n/*********************************/\n");
             break;
         case 2:
-            printf("Obrigado pela visita. Até a próxima!\n");
+            printf("\n/**************************************/\n");
+            printf("\n  Obrigado pela visita. Até a próxima!  \n");
+            printf("\n/**************************************/\n");
             break;
         case 3:
-            printf("Tenha um ótimo dia! Até mais.\n");
+            printf("\n/*********************************/\n");
+            printf("\n   Tenha um ótimo dia! Até mais.   \n");
+            printf("\n/*********************************/\n");
             break;
         case 4:
-            printf("Foi um prazer ajudar. Até a próxima vez!\n");
+            printf("\n/******************************************/\n");
+            printf("\n  Foi um prazer ajudar. Até a próxima vez!  \n");
+            printf("\n/******************************************/\n");
             break;
         default:
             break;
